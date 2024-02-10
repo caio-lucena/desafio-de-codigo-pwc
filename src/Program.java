@@ -1,6 +1,4 @@
 import java.util.*;
-//TODO incluir a lógica para o logradouro
-
 public class Program {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -8,22 +6,35 @@ public class Program {
         try {
 
             System.out.print("Informe o seu endereço: ");
-            String address = scanner.nextLine();
+            String fullAddress = scanner.nextLine();
 
-            String [] vector = address.split(" ");
+            String [] vector = fullAddress.split(" ");
             String addressNumber = "";
+            StringBuilder strBuilder = new StringBuilder();
+
+            int aux = 0;
 
             for (int i = 0; i < vector.length; i++){
                 for(int j = 0; j < vector[i].length(); j++){
 
                     if (Character.isDigit(vector[i].charAt(j))){
                         addressNumber = vector[i];
-                        break;
+                        aux = i;
                     }
                 }
             }
 
-            System.out.println("Número do endereço: " + addressNumber);
+            //TODO corrigir palavras truncadas e caracteres como ',' no número. Ex: "4, Rue de la République"
+            //TODO revisar necessidade de utilizar o StringBuilder
+
+            for (int i = 0; i < vector.length; i++){
+                if(i != aux){
+                    strBuilder.append(vector[i]);
+                }
+            }
+
+            System.out.println("{\"" + strBuilder + "\"" + ", \"" + addressNumber + "\"}");
+
         }
         catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e){
             System.out.println("Erro: " + e.getMessage());
