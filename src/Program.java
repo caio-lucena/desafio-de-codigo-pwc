@@ -9,31 +9,38 @@ public class Program {
             String fullAddress = scanner.nextLine();
 
             String [] vector = fullAddress.split(" ");
+
+            String address = "";
             String addressNumber = "";
-            StringBuilder strBuilder = new StringBuilder();
+            String separator = " ";
 
             int aux = 0;
 
             for (int i = 0; i < vector.length; i++){
-                for(int j = 0; j < vector[i].length(); j++){
-
-                    if (Character.isDigit(vector[i].charAt(j))){
+                for (int j = 0; j < vector[i].length(); j++){
+                    if(Character.isDigit(vector[i].charAt(j))){
                         addressNumber = vector[i];
                         aux = i;
                     }
                 }
             }
 
-            //TODO corrigir palavras truncadas e caracteres como ',' no número. Ex: "4, Rue de la République"
-            //TODO revisar necessidade de utilizar o StringBuilder
+            boolean isAbbreviation = aux > 0 && (vector[aux -1].equalsIgnoreCase("n°") || vector[aux -1].equals("No"));
 
-            for (int i = 0; i < vector.length; i++){
-                if(i != aux){
-                    strBuilder.append(vector[i]);
-                }
+
+            if (isAbbreviation){
+                String auxAddressNumber = addressNumber;
+                addressNumber = vector[aux-1].concat(separator).concat(auxAddressNumber);
+                vector[aux-1] = "";
             }
 
-            System.out.println("{\"" + strBuilder + "\"" + ", \"" + addressNumber + "\"}");
+
+
+
+
+
+
+            System.out.println("{\"" + address.trim() + "\"" + ", \"" + addressNumber.trim() + "\"}");
 
         }
         catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e){
