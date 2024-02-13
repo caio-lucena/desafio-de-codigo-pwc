@@ -1,4 +1,7 @@
 import java.util.*;
+
+//TODO tratar casos semelhantes a 2.b, 3.c (vírgulas também devem ser retiradas do logradouro) e 3.d (há um " a mais no campo número)
+
 public class Program {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -12,6 +15,7 @@ public class Program {
 
             String address = "";
             String addressNumber = "";
+            String addressNumberWithoutComma = "";
             String separator = " ";
 
             int aux = 0;
@@ -21,12 +25,13 @@ public class Program {
                     if(Character.isDigit(vector[i].charAt(j))){
                         addressNumber = vector[i];
                         aux = i;
+
                     }
                 }
             }
 
             boolean isAbbreviation = aux > 0 && (vector[aux -1].equalsIgnoreCase("n°") || vector[aux -1].equals("No"));
-
+            boolean containsComma = vector[aux].contains(",");
 
             if (isAbbreviation){
                 String auxAddressNumber = addressNumber;
@@ -34,13 +39,25 @@ public class Program {
                 vector[aux-1] = "";
             }
 
+            if(containsComma){
+                addressNumberWithoutComma = addressNumber.replace(",", "");
+            }
 
 
+            for (int i = 0; i < vector.length; i++){
+                if(i != aux){
+                    String auxAddress = vector[i];
 
+                    address = address.concat(auxAddress).concat(" ");
+                }
+            }
 
-
-
-            System.out.println("{\"" + address.trim() + "\"" + ", \"" + addressNumber.trim() + "\"}");
+            if(containsComma){
+                System.out.println("{\"" + address.trim() + "\"" + ", \"" + addressNumberWithoutComma.trim() + "\"}");
+            }
+            else {
+                System.out.println("{\"" + address.trim() + "\"" + ", \"" + addressNumber.trim() + "\"}");
+            }
 
         }
         catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e){
