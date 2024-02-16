@@ -40,12 +40,17 @@ public class Program {
             }
 
             boolean isAbbreviation = aux > 0 && (auxVector[aux -1].equals("No"));
-
+            boolean isAddressComplement = (aux + 1 < auxVector.length) && (auxVector[aux + 1].length() == 1);
 
             if (isAbbreviation){
                 String auxAddressNumber = addressNumber;
                 addressNumber = auxVector[aux-1].concat(separator).concat(auxAddressNumber);
                 auxVector[aux-1] = "";
+            }
+
+            if (isAddressComplement){
+                addressNumber = addressNumber.concat(separator).concat(vector[aux + 1]);
+                auxVector[aux + 1] = "";
             }
 
             for (int i = 0; i < auxVector.length; i++){
