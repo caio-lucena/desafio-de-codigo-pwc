@@ -14,7 +14,7 @@ public class AddressService extends FormatAddressGrpc.FormatAddressImplBase {
 
        APIResponse.Builder response = APIResponse.newBuilder();
 
-       response.setResponseMessage(AddressFormatter.format(fullAddress)).setResponseCode(200);
+       response.setResponseMessage(AddressFormatter.formatGrpc(fullAddress)).setResponseCode(200);
 
        responseObserver.onNext(response.build());
        responseObserver.onCompleted();
