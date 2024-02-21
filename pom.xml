@@ -2,12 +2,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>CodeChallenge</groupId>
 	<artifactId>CodeChallenge</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>com.google.protobuf</groupId>
 			<artifactId>protobuf-java</artifactId>
@@ -19,34 +19,28 @@
 			<artifactId>grpc-netty-shaded</artifactId>
 			<version>1.27.0</version>
 		</dependency>
-
 		<dependency>
 			<groupId>io.grpc</groupId>
 			<artifactId>grpc-protobuf</artifactId>
 			<version>1.27.0</version>
 		</dependency>
-
 		<dependency>
 			<groupId>io.grpc</groupId>
 			<artifactId>grpc-stub</artifactId>
 			<version>1.27.0</version>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.annotation</groupId>
 			<artifactId>javax.annotation-api</artifactId>
 			<version>1.3.2</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>17</maven.compiler.source>
-		<maven.compiler.target>17</maven.compiler.target>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 	</properties>
-
 
 	<build>
 		<defaultGoal>clean generate-sources compile install</defaultGoal>
@@ -77,8 +71,7 @@
 								</outputTarget>
 								<outputTarget>
 									<type>grpc-java</type>
-									<pluginArtifact>
-										io.grpc:protoc-gen-grpc-java:1.15.0</pluginArtifact>
+									<pluginArtifact>io.grpc:protoc-gen-grpc-java:1.15.0</pluginArtifact>
 									<outputDirectory>src/main/java</outputDirectory>
 								</outputTarget>
 							</outputTargets>
@@ -99,6 +92,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
