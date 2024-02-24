@@ -6,4 +6,4 @@ A lógica básica pode ser acessada a partir da classe Program.java. Porém, tam
 
 Este projeto foi feito utilizando a linguagem de programação Java em sua versão 17.
 
-Descrição do problema proposto no arquivo "desafio.txt".
+Descrição do desafio proposto no arquivo "desafio.txt".
